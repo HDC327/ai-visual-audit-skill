@@ -64,16 +64,18 @@ Extra requirements: keep the brand logo and "Buy Now" CTA.
 Images: attached.
 ```
 
-Images alone are still usable. The agent should first ask what the image is for and what goal it should achieve; if no useful context is provided, it infers the likely use case from the image and clearly says the advice is based on that inference.
+Images alone are still usable, and the agent won't stall waiting for your answer. It infers the likely use case from the image, gives the full review right away, and clearly says the advice is based on that inference — then adds one optional line inviting you to share the real use case for a sharper read.
 
 ---
 
 ## What It Does
 
-- **Advice, not verdicts**: outputs “the top-right logo is too small” instead of a blunt score or final judgment.
+- **Advice, not verdicts**: outputs “top-right, the brand logo is too small” instead of a blunt score or final judgment.
 - **Maximum 3 key issues**: forces prioritization and avoids overwhelming users.
-- **Lightweight context**: use case, goal, and extra requirements help; if absent, the agent asks once and then infers from the image.
-- **Actionable revision advice**: each finding includes location, why it matters, and what to change.
+- **No blocking questions**: context helps, but if it's absent the agent infers from the image and delivers a full review immediately, adding just one optional line inviting you to refine.
+- **Precise locations**: a consistent nine-grid vocabulary (top-left / center / bottom strip…) plus what's there, so you instantly know where to look.
+- **Multi-image ready**: a one-line verdict per image first, then global priorities across images; for comparisons it tells you which one better serves your goal.
+- **Actionable revision advice**: each finding includes location, why it matters, and what to change — and you can ask for a ready-to-paste revision prompt.
 
 ---
 
@@ -122,27 +124,30 @@ ai-visual-audit-skill/
 The Skill defaults to readable Markdown, not mandatory JSON:
 
 ```text
-Overall suggestion: Ready to use / Small revisions suggested / Revise before use
-Basis: Based on your use case and goal / Based on image inference only
+Overall suggestion: Small revisions suggested
+Basis: Based on image inference only
+My read of the image: looks like a Double 11 app hero banner aiming to push the final price and clicks
 
 Top issues to check first:
-1. Location: Image 1, headline area
-   Priority: Must fix first / Worth improving
+1. Location: Image 1, center, headline
+   Priority: Worth improving
    Issue: Primary benefit copy is too small for mobile scanning
    Why it matters: A campaign hero should make the offer the first visual focus
    How to revise: Increase the benefit copy size, create stronger hierarchy over secondary text, and reduce nearby decorative interference
 
 Quick-scan clear: subject clarity, overall atmosphere
 One-line revision brief: Suggested revision...
+Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
+Next (optional): Want a ready-to-paste revision prompt for issue 1?
 ```
 
 ---
 
 ## Known Limitations
 
-- **Image-only input is not a full judgment**: the agent asks once for context; if none is provided, it infers likely use but cannot verify the real brief, pricing, copy, campaign rules, or brand standards.
+- **Image-only input is not a full judgment**: the agent infers likely use and reviews right away (then invites you to add context), but cannot verify the real brief, pricing, copy, campaign rules, or brand standards.
 - **Creative judgment is weaker**: the agent usually cannot access recent comparable assets, so similarity/cliche judgments are low-to-medium confidence.
-- **Text and prices need human verification**: small copy, dates, and prices must be checked by a human.
+- **Text and prices need human verification**: the agent reads small copy, dates, and prices back to you for confirmation, since image models can misread them.
 
 ---
 
