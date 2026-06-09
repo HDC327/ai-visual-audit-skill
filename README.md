@@ -12,6 +12,46 @@
 
 ---
 
+## 安装
+
+本 Skill 是一个标准的 [Agent Skill](https://code.claude.com/docs/en/skills)（`SKILL.md` + `references/`），可用于 Claude Code、Codex、Cursor 等支持该格式的工具。
+
+### 方式一：npm（推荐）
+
+无需手动复制文件，一行命令即可装好：
+
+```bash
+# 安装到当前用户，对所有项目生效（~/.claude/skills）
+npx ai-visual-audit-skill
+
+# 只安装到当前项目（./.claude/skills，适合随仓库提交）
+npx ai-visual-audit-skill --project
+
+# 安装到 Codex（~/.codex/skills）
+npx ai-visual-audit-skill --codex
+
+# 安装到任意目录（如 Cursor、自定义 Agent）
+npx ai-visual-audit-skill --dir ~/.cursor/skills
+```
+
+安装器会把 `SKILL.md` 和 `references/` 复制到目标位置下的 `ai-visual-audit/` 目录。重复执行可直接覆盖更新；`--force` 可跳过覆盖提示。查看全部参数：`npx ai-visual-audit-skill --help`。
+
+> 安装后如果 Agent 没有立刻识别到，重启一次会话即可。
+
+### 方式二：手动安装
+
+```bash
+git clone https://github.com/HDC327/ai-visual-audit-skill.git
+# 个人级（所有项目可用）
+cp -r ai-visual-audit-skill ~/.claude/skills/ai-visual-audit
+# 或项目级（仅当前仓库）
+cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
+```
+
+只需保证目标目录名为 `ai-visual-audit`（与 `SKILL.md` 中的 `name` 一致），且包含 `SKILL.md` 和 `references/`。
+
+---
+
 ## 30 秒上手
 
 把图片和几条最简单的上下文发给已安装本 Skill 的 AI Agent：
@@ -60,7 +100,10 @@
 
 ```text
 ai-visual-audit-skill/
-├── SKILL.md
+├── SKILL.md              # Skill 入口：触发条件、核心规则、默认输出
+├── package.json          # npm 安装包配置
+├── bin/
+│   └── cli.js            # npx 安装器
 ├── README.md
 ├── README-en.md
 └── references/

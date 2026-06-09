@@ -12,6 +12,46 @@
 
 ---
 
+## Installation
+
+This is a standard [Agent Skill](https://code.claude.com/docs/en/skills) (`SKILL.md` + `references/`) and works with Claude Code, Codex, Cursor, and other SKILL.md-compatible tools.
+
+### Option 1: npm (recommended)
+
+No manual file copying — one command installs everything:
+
+```bash
+# Personal install, available across all projects (~/.claude/skills)
+npx ai-visual-audit-skill
+
+# Project-only install (./.claude/skills, good for committing with a repo)
+npx ai-visual-audit-skill --project
+
+# Install for Codex (~/.codex/skills)
+npx ai-visual-audit-skill --codex
+
+# Install into any directory (e.g. Cursor or a custom agent)
+npx ai-visual-audit-skill --dir ~/.cursor/skills
+```
+
+The installer copies `SKILL.md` and `references/` into an `ai-visual-audit/` folder under the target location. Re-running it overwrites the previous install; pass `--force` to skip the overwrite notice. See all options with `npx ai-visual-audit-skill --help`.
+
+> If the agent doesn't pick up the skill right away, restart the session.
+
+### Option 2: Manual install
+
+```bash
+git clone https://github.com/HDC327/ai-visual-audit-skill.git
+# Personal (all projects)
+cp -r ai-visual-audit-skill ~/.claude/skills/ai-visual-audit
+# Or project-scoped (current repo only)
+cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
+```
+
+Just make sure the target directory is named `ai-visual-audit` (matching the `name` in `SKILL.md`) and contains `SKILL.md` and `references/`.
+
+---
+
 ## Get Started in 30 Seconds
 
 Send images and a few lightweight context notes to an agent with this Skill installed:
@@ -60,7 +100,10 @@ Images alone are still usable. The agent should first ask what the image is for 
 
 ```text
 ai-visual-audit-skill/
-├── SKILL.md
+├── SKILL.md              # Skill entry: triggers, core rules, default output
+├── package.json          # npm package config
+├── bin/
+│   └── cli.js            # npx installer
 ├── README.md
 ├── README-en.md
 └── references/
