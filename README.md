@@ -82,6 +82,7 @@ cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
 - **位置说得准**：统一用九宫格方位（左上 / 正中 / 底部通栏…）+ 那里是什么，让你一眼定位到要看的地方。
 - **多图也能用**：多张图时先给每张一句话结论，再给跨图的全局重点；要对比时直接告诉你哪张更能达成目标。
 - **可直接改稿**：每条建议都包含位置、为什么重要、怎么改，还可让 Agent 生成一段可直接粘贴的改图 prompt。
+- **轻量反馈进化**：每次建议后只用一句自然邀请收集你的看法；如果你指出判断不准、漏看或格式不对，Agent 会在后台沉淀为优化信号，达到阈值后自动调整规则，并清空已消费反馈，避免记录无限膨胀。
 
 ---
 
@@ -118,6 +119,8 @@ ai-visual-audit-skill/
     ├── skill-review-flow.md
     ├── skill-review-criteria.md
     ├── skill-review-redlines.md
+    ├── skill-review-optimizer.md
+    ├── feedback/
     ├── content-quality-standards/
     ├── content-safety-standards/
     └── visual-design-audit-dimensions/
@@ -145,7 +148,16 @@ Skill 默认输出可读 Markdown，不强制 JSON：
 给设计师的一句话：建议优先强化价格利益点和行动按钮……
 需要你再确认：我读到的是「到手价 ¥99 / 立即抢购」，请确认是否正确
 下一步（可选）：要我针对第 1 处生成一段可直接粘贴的改图 prompt 吗？
+反馈邀请：如果有哪里判断不准，直接告诉我，我会记下来把之后的判断调得更准。
 ```
+
+---
+
+## 反馈与持续优化
+
+用户不需要填写专业表格。你可以自然地说“这条不对”“你漏了底部小字”“不要打分”或“这个判断准确”。Skill 会把这些后续对话静默整理成反馈信号，用于优化输出格式和判断边界。
+
+反馈达到阈值后，Agent 可自动更新相关文档：输出违规优先修流程，误报/漏报集中出现时再校准 `references/skill-review-criteria.md`。已用于优化的反馈会从日志中清空，只在 `references/feedback/change-log.md` 保留简短摘要。
 
 ---
 

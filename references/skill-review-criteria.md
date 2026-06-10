@@ -203,3 +203,17 @@
 - 最多列 4 个；超出时按重要性截断。
 - 不要填入 `risk_items` 已标注风险的同一维度。
 - 示例值：`["主体清晰度", "品牌合规", "文案一致性"]`
+
+---
+
+## 7. 反馈校准入口
+
+本文件可以根据 `skill-review-optimizer.md` 的静默反馈结果自动校准，但只改稳定、重复出现的问题：
+
+- `false_positive` 集中出现：优先放宽对应物料 / 场景下的判断边界，或把轻微问题降为不展开。
+- `missed_issue` 集中出现：补充对应物料 / 节点的易错点，或收紧 high / mid 边界。
+- `needs_explanation` 集中出现：增强该维度的依据表达，不一定改变判断标准。
+- `execution_violation` 不改 criteria，回到 `SKILL.md` 或 `skill-review-flow.md` 增强输出前自检。
+- 合规、安全、版权相关反馈只允许自动收紧或增强提示，不因少量用户反馈自动放宽红线。
+
+自动优化后，应把已消费反馈汇总到 `references/feedback/change-log.md`，并清空 `references/feedback/feedback-log.md` 中对应明细，避免反馈记录无限膨胀。

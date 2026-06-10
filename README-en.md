@@ -82,6 +82,7 @@ Images alone are still usable, and the agent won't stall waiting for your answer
 - **Precise locations**: a consistent nine-grid vocabulary (top-left / center / bottom strip…) plus what's there, so you instantly know where to look.
 - **Multi-image ready**: a one-line verdict per image first, then global priorities across images; for comparisons it tells you which one better serves your goal.
 - **Actionable revision advice**: each finding includes location, why it matters, and what to change — and you can ask for a ready-to-paste revision prompt.
+- **Lightweight feedback evolution**: each review ends with a natural invitation for your take. If you point out a wrong call, a missed issue, or a format violation, the agent silently turns that into an optimization signal, updates rules after thresholds are met, and clears consumed feedback so logs do not grow forever.
 
 ---
 
@@ -118,6 +119,8 @@ ai-visual-audit-skill/
     ├── skill-review-flow.md
     ├── skill-review-criteria.md
     ├── skill-review-redlines.md
+    ├── skill-review-optimizer.md
+    ├── feedback/
     ├── content-quality-standards/
     ├── content-safety-standards/
     └── visual-design-audit-dimensions/
@@ -145,7 +148,16 @@ Quick-scan clear: subject clarity, overall atmosphere
 One-line revision brief: Suggested revision...
 Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
 Next (optional): Want a ready-to-paste revision prompt for issue 1?
+Feedback invitation: If any judgment feels off, tell me directly — I'll use it to make future reads more accurate.
 ```
+
+---
+
+## Feedback and Continuous Tuning
+
+Users do not need to fill out a formal feedback form. Natural replies like "this part is wrong", "you missed the footer copy", "do not score it", or "this is accurate" are enough. The Skill silently converts those replies into feedback signals for output format and judgment-boundary tuning.
+
+After feedback thresholds are met, the agent can update the relevant docs automatically: execution violations improve the flow, while repeated false positives or missed issues calibrate `references/skill-review-criteria.md`. Consumed feedback is cleared from the active log, with only a short summary kept in `references/feedback/change-log.md`.
 
 ---
 

@@ -20,7 +20,8 @@ Do not require a fixed input template. Prefer lightweight context and rely on vi
 1. Read `references/skill-review-flow.md` for the execution protocol and output format.
 2. Read `references/skill-review-criteria.md` for material types, event detection, dimensions, and risk levels.
 3. Read `references/skill-review-redlines.md` only for suspected compliance or copyright risks.
-4. Read detailed files under `references/content-quality-standards/` only when you need evidence for a specific suspected issue.
+4. Read `references/skill-review-optimizer.md` when the user gives feedback on the Agent's judgment, asks about evolution, or when silent feedback optimization is triggered.
+5. Read detailed files under `references/content-quality-standards/` only when you need evidence for a specific suspected issue.
 
 ## Core Rules
 
@@ -33,6 +34,8 @@ Do not require a fixed input template. Prefer lightweight context and rely on vi
 - For text, price, date, brand name, logo, and legal/compliance findings that need verification, **read back exactly what you see and ask the user to confirm that string**, e.g. "我读到的是『到手价 ¥99 / 立即抢购』，请确认是否正确" — do not pretend it is verified and do not give a generic "请核对价格".
 - **Offer a concrete next step.** End with one optional action the user can take, e.g. offer a ready-to-paste 改图 prompt for a flagged issue ("要我针对第 1 处生成一段可直接粘贴的改图 prompt 吗？"). Only generate the prompt when the user says yes.
 - Do not output numeric scores or final approval/rejection language.
+- End complete visual reviews with a lightweight feedback invitation, e.g. "如果有哪里判断不准，直接告诉我，我会记下来把之后的判断调得更准。" Do not expose internal labels like false_positive, missed_issue, optimizer, or criteria unless the user asks.
+- If the user later corrects, agrees with, questions, or challenges the review, silently infer the feedback type and record it according to `references/skill-review-optimizer.md`. After automatic optimization consumes feedback, clear consumed details so feedback logs do not grow without bound.
 - Use ordinary user-facing language. Keep internal terms like high/mid, dimension_type, and compliance redline out of the default answer unless the user asks for professional detail.
 
 ## Default Output
@@ -57,4 +60,5 @@ Use concise Markdown:
 给设计师的一句话：一段可直接转述的修改说明
 需要你再确认：把读到的关键文字念出来让用户确认，如「我读到的是『到手价 ¥99』，请确认」（涉及价格/日期/品牌名/logo/版权来源时）
 下一步（可选）：如「要我针对第 1 处生成一段可直接粘贴的改图 prompt 吗？」
+反馈邀请：如果有哪里判断不准，直接告诉我，我会记下来把之后的判断调得更准。
 ```
