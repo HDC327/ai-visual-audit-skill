@@ -7,6 +7,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const requiredFiles = [
   "SKILL.md",
+  "assets/demo-problem-banner.png",
   "references/skill-review-flow.md",
   "references/skill-review-criteria.md",
   "references/skill-review-redlines.md",
@@ -74,6 +75,17 @@ for (const file of markdownFiles) {
 for (const referencedPath of referencedPaths) {
   if (!exists(referencedPath)) {
     errors.push(`Broken reference: ${referencedPath}`);
+  }
+}
+
+for (const file of ["README.md", "README-en.md"]) {
+  const content = read(file);
+  for (const match of content.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)) {
+    const imagePath = match[1];
+    if (/^[a-z]+:\/\//i.test(imagePath) || imagePath.startsWith("#")) continue;
+    if (!exists(imagePath)) {
+      errors.push(`Broken image reference in ${file}: ${imagePath}`);
+    }
   }
 }
 

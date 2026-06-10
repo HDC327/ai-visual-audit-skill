@@ -12,55 +12,42 @@
 
 ## What You'll Get
 
-Send this campaign banner to an agent with the Skill installed:
+Send this campaign banner example to an agent with the Skill installed:
 
-```
-[Double 11 App Hero Banner]
-┌──────────────────────────────────────────────────────────────┐
-│  ①Brand logo   ②Headline "Double 11 Sale"   ③Countdown      │
-│                                                              │
-│          [Hero visual: product image, ~60% of frame]         │
-│                                                              │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │       Buy Now                 Final price ¥99         │  │
-│  └───────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────────┘
-```
+![A flawed Double 11 campaign banner with hierarchy and CTA issues](assets/demo-problem-banner.png)
 
 You get this immediately:
 
 ```
-Overall suggestion: Small revisions suggested
+Overall suggestion: Revise before use
 Basis: Based on image inference only
-My read of the image: Double 11 app hero banner — goal is final price visibility and click-through
+My read of the image: This looks like a Double 11 app hero banner. The likely goal is to highlight the product, final price, and immediate purchase action.
 
 Top 3 issues to look at first:
-1. Location: Image 1, center, "Final price ¥99"
+1. Location: Image 1, bottom center, "立即抢购" CTA button
+   Priority: Fix first
+   Issue: The button is too close to the red-gold background, and the text is muted, so it does not read as the main clickable action.
+   Why it matters: The hero banner needs to guide users toward purchase; a weak CTA directly hurts click-through.
+   How to revise: Use a higher-contrast solid button treatment, reduce nearby glow, and separate the CTA from the price area.
+
+2. Location: Image 1, lower center, "到手价 ¥99"
+   Priority: Fix first
+   Issue: The price is buried under the product stage, light dots, and oversized headline, so it is not the first benefit users notice.
+   Why it matters: For a Double 11 hero banner, users should see the offer or final price immediately.
+   How to revise: Enlarge "¥99", simplify the label, and move the price into a stronger position above the CTA or beside the product.
+
+3. Location: Image 1, edges and foreground, coins, ribbons, gifts, and light effects
    Priority: Worth improving
-   Issue: Price size vs. supporting text — not enough contrast for mobile small-screen scanning
-   Why it matters: The hero's core job is making users want to tap the moment they see the price
-   How to revise: Scale up ¥99 by 1.5–2×, add breathing room around it, reduce surrounding decoration
+   Issue: Decorative elements are too dense, especially on the right and bottom, competing with the product and CTA.
+   Why it matters: The sale atmosphere is already clear; extra decoration reduces scanning efficiency and makes the design feel cheaper.
+   How to revise: Keep a smaller set of festive elements and clear the foreground so product, price, and CTA form one obvious path.
 
-2. Location: Image 1, bottom center, "Buy Now" button
-   Priority: Worth improving
-   Issue: Button-to-background contrast is low; click intent is weak
-   Why it matters: The CTA is the final action the hero needs users to take — it should carry the strongest visual weight
-   How to revise: Raise button fill saturation, or add an outline + subtle shadow to separate it from the background
-
-3. Location: Image 1, top right, countdown timer
-   Priority: Fine as-is
-   Issue: Digits are readable but stroke weight is thin
-   How to revise: Increase digit weight for a stronger urgency signal
-
-Quick-scan clear: Product image clarity, overall color atmosphere
-One-line brief for the designer: Prioritize making "¥99" the visual anchor, then boost CTA contrast
-Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
+Quick-scan clear: Product clarity, Double 11 atmosphere, headline readability
+One-line brief for the designer: Make "¥99" and the CTA the clearest conversion path, then cut the surrounding decoration by about half.
+Please confirm: I read "双11 狂欢价 / 到手价 ¥99 / 立即抢购 / 00:12:33 / MOCK" — please confirm it's correct.
 Next (optional): Want a ready-to-paste revision prompt for issue 1?
+Feedback invitation: If any judgment feels off, tell me directly — I’ll use it to make future reads more accurate.
 ```
-
-<!-- 💡 Tip: replace this section with a real screenshot showing the nine-grid annotated review output.
-     Example: ![Review output screenshot](./assets/demo-output.png)
-     For a visual audit tool, this is the single most important image in the README. -->
 
 ---
 
@@ -201,6 +188,8 @@ Consumed feedback entries are cleared from the active log, with only a one-line 
 ai-visual-audit-skill/
 ├── SKILL.md                          # Skill entry: triggers, core rules, default output format
 ├── package.json                      # npm package config
+├── assets/
+│   └── demo-problem-banner.png       # README demo image
 ├── bin/
 │   └── cli.js                        # npx installer
 ├── README.md
