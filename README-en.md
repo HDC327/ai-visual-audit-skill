@@ -2,9 +2,11 @@
 **AI 视觉改稿建议助手**
 
 [![License](https://img.shields.io/github/license/HDC327/ai-visual-audit-skill?style=flat-square)](LICENSE)
+[![npm](https://img.shields.io/npm/v/ai-visual-audit-skill?style=flat-square)](https://www.npmjs.com/package/ai-visual-audit-skill)
 [![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)](.)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)](.)
 [![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)](.)
+[![Cursor](https://img.shields.io/badge/Cursor-Supported-000000?style=flat-square)](.)
 
 > An AI-assisted framework for everyday visual feedback: not to replace human judgment, but to tell people **where to look, why it matters, and what to change first**.
 
@@ -17,6 +19,8 @@
 This is a standard [Agent Skill](https://code.claude.com/docs/en/skills) (`SKILL.md` + `references/`) and works with Claude Code, Codex, Cursor, and other SKILL.md-compatible tools.
 
 ### Option 1: npm (recommended)
+
+npm package: [ai-visual-audit-skill](https://www.npmjs.com/package/ai-visual-audit-skill)
 
 No manual file copying — one command installs everything:
 
@@ -49,6 +53,8 @@ cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
 ```
 
 Just make sure the target directory is named `ai-visual-audit` (matching the `name` in `SKILL.md`) and contains `SKILL.md` and `references/`.
+
+> **Windows users**: prefer `npx ai-visual-audit-skill`; for manual copy, drag the folder in File Explorer, or run the `cp` commands above in Git Bash.
 
 ---
 
@@ -140,6 +146,12 @@ One-line revision brief: Suggested revision...
 Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
 Next (optional): Want a ready-to-paste revision prompt for issue 1?
 ```
+
+---
+
+## How to Adapt to Your Business
+
+The real domain knowledge lives in `references/skill-review-criteria.md`. You can replace material types, placement scenarios, campaign nodes, and risk boundaries there — while keeping the output pattern: at most 3 key issues, each with location + why it matters + how to revise.
 
 ---
 

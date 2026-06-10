@@ -2,9 +2,11 @@
 **AI Visual Improvement Assistant**
 
 [![License](https://img.shields.io/github/license/HDC327/ai-visual-audit-skill?style=flat-square)](LICENSE)
+[![npm](https://img.shields.io/npm/v/ai-visual-audit-skill?style=flat-square)](https://www.npmjs.com/package/ai-visual-audit-skill)
 [![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)](.)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)](.)
 [![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)](.)
+[![Cursor](https://img.shields.io/badge/Cursor-Supported-000000?style=flat-square)](.)
 
 > 一个面向普通用户的 AI 视觉建议框架：不替代人做最终决定，而是告诉你**先看哪里、为什么、怎么改**。
 
@@ -17,6 +19,8 @@
 本 Skill 是一个标准的 [Agent Skill](https://code.claude.com/docs/en/skills)（`SKILL.md` + `references/`），可用于 Claude Code、Codex、Cursor 等支持该格式的工具。
 
 ### 方式一：npm（推荐）
+
+npm 包页：[ai-visual-audit-skill](https://www.npmjs.com/package/ai-visual-audit-skill)
 
 无需手动复制文件，一行命令即可装好：
 
@@ -49,6 +53,8 @@ cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
 ```
 
 只需保证目标目录名为 `ai-visual-audit`（与 `SKILL.md` 中的 `name` 一致），且包含 `SKILL.md` 和 `references/`。
+
+> **Windows 用户**：建议优先用 `npx ai-visual-audit-skill`；若手动复制，可用资源管理器拖拽文件夹，或在 Git Bash 中执行上述 `cp` 命令。
 
 ---
 
