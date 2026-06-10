@@ -20,6 +20,9 @@ jobs:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Test skill package
+        run: npm test
+
       - name: Validate package
         run: npm pack --dry-run
 

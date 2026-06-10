@@ -1,16 +1,77 @@
-﻿# AI Visual Improvement Assistant
+# AI Visual Improvement Assistant
+
 **AI 视觉改稿建议助手**
 
-[![License](https://img.shields.io/github/license/HDC327/ai-visual-audit-skill?style=flat-square)](LICENSE)
-[![npm](https://img.shields.io/npm/v/ai-visual-audit-skill?style=flat-square)](https://www.npmjs.com/package/ai-visual-audit-skill)
-[![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)](.)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)](.)
-[![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)](.)
-[![Cursor](https://img.shields.io/badge/Cursor-Supported-000000?style=flat-square)](.)
+[![License](https://img.shields.io/github/license/HDC327/ai-visual-audit-skill?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/ai-visual-audit-skill?style=flat-square)](https://www.npmjs.com/package/ai-visual-audit-skill) [![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Cursor](https://img.shields.io/badge/Cursor-Supported-000000?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master)
 
-> An AI-assisted framework for everyday visual feedback: not to replace human judgment, but to tell people **where to look, why it matters, and what to change first**.
+> Send an image, get **where to look, why it matters, and what to change first** — no scores, no verdicts, just the 3 spots worth fixing.
 
-[中文 README](README.md)
+[中文 README](https://github.com/HDC327/ai-visual-audit-skill/blob/master/README.md)
+
+---
+
+## What You'll Get
+
+Send this campaign banner to an agent with the Skill installed:
+
+```
+[Double 11 App Hero Banner]
+┌──────────────────────────────────────────────────────────────┐
+│  ①Brand logo   ②Headline "Double 11 Sale"   ③Countdown      │
+│                                                              │
+│          [Hero visual: product image, ~60% of frame]         │
+│                                                              │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │       Buy Now                 Final price ¥99         │  │
+│  └───────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────┘
+```
+
+You get this immediately:
+
+```
+Overall suggestion: Small revisions suggested
+Basis: Based on image inference only
+My read of the image: Double 11 app hero banner — goal is final price visibility and click-through
+
+Top 3 issues to look at first:
+1. Location: Image 1, center, "Final price ¥99"
+   Priority: Worth improving
+   Issue: Price size vs. supporting text — not enough contrast for mobile small-screen scanning
+   Why it matters: The hero's core job is making users want to tap the moment they see the price
+   How to revise: Scale up ¥99 by 1.5–2×, add breathing room around it, reduce surrounding decoration
+
+2. Location: Image 1, bottom center, "Buy Now" button
+   Priority: Worth improving
+   Issue: Button-to-background contrast is low; click intent is weak
+   Why it matters: The CTA is the final action the hero needs users to take — it should carry the strongest visual weight
+   How to revise: Raise button fill saturation, or add an outline + subtle shadow to separate it from the background
+
+3. Location: Image 1, top right, countdown timer
+   Priority: Fine as-is
+   Issue: Digits are readable but stroke weight is thin
+   How to revise: Increase digit weight for a stronger urgency signal
+
+Quick-scan clear: Product image clarity, overall color atmosphere
+One-line brief for the designer: Prioritize making "¥99" the visual anchor, then boost CTA contrast
+Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
+Next (optional): Want a ready-to-paste revision prompt for issue 1?
+```
+
+<!-- 💡 Tip: replace this section with a real screenshot showing the nine-grid annotated review output.
+     Example: ![Review output screenshot](./assets/demo-output.png)
+     For a visual audit tool, this is the single most important image in the README. -->
+
+---
+
+## Why "Advice" and Not "Verdict"
+
+| Verdict-style AI review | Advice-style review (this Skill) |
+|---|---|
+| "This image scores 72 — below threshold." | "Fix first: benefit copy is buried under decoration." |
+| Feels like grading | Feels like practical editing guidance |
+| User still doesn't know where to start | User checks the flagged areas first |
+| AI may sound overly final | AI suggests; the human decides |
 
 ---
 
@@ -21,8 +82,6 @@ This is a standard [Agent Skill](https://code.claude.com/docs/en/skills) (`SKILL
 ### Option 1: npm (recommended)
 
 npm package: [ai-visual-audit-skill](https://www.npmjs.com/package/ai-visual-audit-skill)
-
-No manual file copying — one command installs everything:
 
 ```bash
 # Personal install, available across all projects (~/.claude/skills)
@@ -38,16 +97,20 @@ npx ai-visual-audit-skill --codex
 npx ai-visual-audit-skill --dir ~/.cursor/skills
 ```
 
-The installer copies `SKILL.md` and `references/` into an `ai-visual-audit/` folder under the target location. Re-running it overwrites the previous install; pass `--force` to skip the overwrite notice. See all options with `npx ai-visual-audit-skill --help`.
+The installer copies `SKILL.md` and `references/` into an `ai-visual-audit/` folder under the target location. Re-running it overwrites the previous install; pass `--force` to skip the overwrite notice.
 
 > If the agent doesn't pick up the skill right away, restart the session.
+
+See all options with `npx ai-visual-audit-skill --help`
 
 ### Option 2: Manual install
 
 ```bash
 git clone https://github.com/HDC327/ai-visual-audit-skill.git
+
 # Personal (all projects)
 cp -r ai-visual-audit-skill ~/.claude/skills/ai-visual-audit
+
 # Or project-scoped (current repo only)
 cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
 ```
@@ -62,7 +125,7 @@ Just make sure the target directory is named `ai-visual-audit` (matching the `na
 
 Send images and a few lightweight context notes to an agent with this Skill installed:
 
-```text
+```
 Help me improve this image.
 Use case: Double 11 app hero banner.
 Goal: emphasize final price and immediate purchase.
@@ -70,19 +133,57 @@ Extra requirements: keep the brand logo and "Buy Now" CTA.
 Images: attached.
 ```
 
-Images alone are still usable, and the agent won't stall waiting for your answer. It infers the likely use case from the image, gives the full review right away, and clearly says the advice is based on that inference — then adds one optional line inviting you to share the real use case for a sharper read.
+**Images alone work fine.** The agent won't stall waiting for context — it infers the likely use case from the image, gives the full review right away, and clearly marks the read as inferred, then adds one optional line inviting you to share the real use case for a sharper follow-up.
 
 ---
 
-## What It Does
+## Language Note
 
-- **Advice, not verdicts**: outputs “top-right, the brand logo is too small” instead of a blunt score or final judgment.
-- **Maximum 3 key issues**: forces prioritization and avoids overwhelming users.
-- **No blocking questions**: context helps, but if it's absent the agent infers from the image and delivers a full review immediately, adding just one optional line inviting you to refine.
-- **Precise locations**: a consistent nine-grid vocabulary (top-left / center / bottom strip…) plus what's there, so you instantly know where to look.
-- **Multi-image ready**: a one-line verdict per image first, then global priorities across images; for comparisons it tells you which one better serves your goal.
-- **Actionable revision advice**: each finding includes location, why it matters, and what to change — and you can ask for a ready-to-paste revision prompt.
-- **Lightweight feedback evolution**: each review ends with a natural invitation for your take. If you point out a wrong call, a missed issue, or a format violation, the agent silently turns that into an optimization signal, updates rules after thresholds are met, and clears consumed feedback so logs do not grow forever.
+`SKILL.md` does not have to be written in English. This project uses a Chinese-first body so Chinese visual review workflows stay natural, while the frontmatter `name` remains hyphenated English and the `description` keeps both English and Chinese trigger phrases for better discovery across agents.
+
+---
+
+## Core Capabilities
+
+- **Maximum 3 key issues** — forces prioritization; avoids overwhelming you with 15 things at once
+- **Precise locations** — a consistent nine-grid vocabulary (top-left / center / bottom strip…) plus what's there, so you instantly know where to look
+- **No blocking questions** — context helps, but if it's absent the agent infers and delivers a full review immediately, with a single optional follow-up at the end
+- **Multi-image ready** — a one-line verdict per image first, then global priorities across images; for comparisons it tells you which one better serves your goal
+- **Actionable revision advice** — each finding includes location, why it matters, and what to change; ask for a ready-to-paste revision prompt whenever you need one
+- **Image quality check** — if an image is blurry or too small, the agent flags its confidence as limited upfront and suggests a clearer version
+- **Key text read-back** — prices, dates, brand names are read back verbatim for your confirmation; the agent never pretends a detail is verified
+
+---
+
+## Self-Evolution: How Feedback Becomes Better Reviews
+
+No forms to fill out. Just reply naturally:
+
+```
+You: "This one is wrong — the logo placement was a client requirement"
+You: "You missed the disclaimer copy at the bottom"
+You: "Don't score it, just give suggestions"
+You: "This call was accurate"
+```
+
+The Skill silently classifies those replies as feedback signals, writes them to `references/feedback/feedback-log.md`, and automatically adjusts judgment rules once a threshold is reached:
+
+```mermaid
+graph LR
+    A[You send image + context] --> B[Agent gives 3 suggestions]
+    B --> C[You reply with feedback]
+    C --> D[Written to feedback/feedback-log.md]
+    D --> E{Threshold reached?}
+    E -- Yes --> F[Auto-update skill-review-criteria.md]
+    E -- No --> G[Keep accumulating]
+    F --> H[Clear consumed entries\nkeep brief summary]
+    H --> B
+```
+
+Consumed feedback entries are cleared from the active log, with only a one-line summary kept in `references/feedback/change-log.md` — so logs don't grow without bound.
+
+<!-- 💡 Tip: a before/after comparison showing output quality improving over several rounds of feedback
+     would make this mechanism much more convincing than text alone. -->
 
 ---
 
@@ -94,70 +195,28 @@ Images alone are still usable, and the agent won't stall waiting for your answer
 
 ---
 
-## Why "Advice" and Not "Verdict"
-
-| Verdict-style AI review | Advice-style review |
-|---|---|
-| "This image scores low." | "Improve first: benefit copy is buried under decoration." |
-| Feels like grading | Feels like practical editing guidance |
-| User still does not know where to start | User checks the flagged areas first |
-| AI may sound overly final | AI suggests; the human decides |
-
----
-
 ## File Structure
 
-```text
+```
 ai-visual-audit-skill/
-├── SKILL.md              # Skill entry: triggers, core rules, default output
-├── package.json          # npm package config
+├── SKILL.md                          # Skill entry: triggers, core rules, default output format
+├── package.json                      # npm package config
 ├── bin/
-│   └── cli.js            # npx installer
+│   └── cli.js                        # npx installer
 ├── README.md
 ├── README-en.md
 └── references/
-    ├── skill-review-flow.md
-    ├── skill-review-criteria.md
-    ├── skill-review-redlines.md
-    ├── skill-review-optimizer.md
+    ├── skill-review-flow.md          # Execution protocol and output format
+    ├── skill-review-criteria.md      # Material types, dimensions, risk levels (always loaded)
+    ├── skill-review-redlines.md      # Compliance and copyright redlines (loaded only when suspected)
+    ├── skill-review-optimizer.md     # Feedback classification and self-evolution rules
     ├── feedback/
-    ├── content-quality-standards/
-    ├── content-safety-standards/
-    └── visual-design-audit-dimensions/
+    │   ├── feedback-log.md           # Unconsumed feedback signals
+    │   └── change-log.md             # Brief summaries of consumed feedback
+    ├── content-quality-standards/    # Quality criteria by material type
+    ├── content-safety-standards/     # Content safety judgment standards
+    └── visual-design-audit-dimensions/ # Visual design audit dimension details
 ```
-
----
-
-## Output Format
-
-The Skill defaults to readable Markdown, not mandatory JSON:
-
-```text
-Overall suggestion: Small revisions suggested
-Basis: Based on image inference only
-My read of the image: looks like a Double 11 app hero banner aiming to push the final price and clicks
-
-Top issues to check first:
-1. Location: Image 1, center, headline
-   Priority: Worth improving
-   Issue: Primary benefit copy is too small for mobile scanning
-   Why it matters: A campaign hero should make the offer the first visual focus
-   How to revise: Increase the benefit copy size, create stronger hierarchy over secondary text, and reduce nearby decorative interference
-
-Quick-scan clear: subject clarity, overall atmosphere
-One-line revision brief: Suggested revision...
-Please confirm: I read "Final price ¥99 / Buy Now" — please confirm it's correct
-Next (optional): Want a ready-to-paste revision prompt for issue 1?
-Feedback invitation: If any judgment feels off, tell me directly — I'll use it to make future reads more accurate.
-```
-
----
-
-## Feedback and Continuous Tuning
-
-Users do not need to fill out a formal feedback form. Natural replies like "this part is wrong", "you missed the footer copy", "do not score it", or "this is accurate" are enough. The Skill silently converts those replies into feedback signals for output format and judgment-boundary tuning.
-
-After feedback thresholds are met, the agent can update the relevant docs automatically: execution violations improve the flow, while repeated false positives or missed issues calibrate `references/skill-review-criteria.md`. Consumed feedback is cleared from the active log, with only a short summary kept in `references/feedback/change-log.md`.
 
 ---
 
@@ -170,7 +229,7 @@ The real domain knowledge lives in `references/skill-review-criteria.md`. You ca
 ## Known Limitations
 
 - **Image-only input is not a full judgment**: the agent infers likely use and reviews right away (then invites you to add context), but cannot verify the real brief, pricing, copy, campaign rules, or brand standards.
-- **Creative judgment is weaker**: the agent usually cannot access recent comparable assets, so similarity/cliche judgments are low-to-medium confidence.
+- **Creative judgment is weaker**: the agent usually cannot access recent comparable assets, so similarity/cliché judgments are low-to-medium confidence.
 - **Text and prices need human verification**: the agent reads small copy, dates, and prices back to you for confirmation, since image models can misread them.
 
 ---
