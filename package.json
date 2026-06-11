@@ -1,6 +1,6 @@
 {
   "name": "ai-visual-audit-skill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AI 视觉改稿建议助手 / AI Visual Improvement Assistant — an Agent Skill that tells you where to look, why it matters, and what to change first. Works with Claude Code, Codex, Cursor and other SKILL.md-compatible agents.",
   "bin": {
     "ai-visual-audit-skill": "bin/cli.js"

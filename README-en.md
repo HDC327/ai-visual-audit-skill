@@ -48,7 +48,7 @@ No scores. No "design language consistency." Just: something's off here, change 
 The more context you share, the more precise the advice — but sending just the image works fine too.
 
 <!-- 💡 Tip: add a real screenshot with nine-grid annotations here — more convincing than any description
-     Example: ![Review output screenshot](./assets/demo-output.png) -->
+     Example: ![Review output screenshot](./assets/demo-problem-banner.png) -->
 
 ---
 
