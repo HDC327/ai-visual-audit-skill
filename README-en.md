@@ -9,6 +9,8 @@ No scores. No "overall it looks good." Just the 3 spots worth touching.
 
 [中文 README](https://github.com/HDC327/ai-visual-audit-skill/blob/master/README.md)
 
+![AI Visual Improvement Assistant cover](./assets/cover-01-opinion-dark.png)
+
 ---
 
 ## What it feels like
@@ -20,35 +22,56 @@ Take a look at this image
 [image attached]
 ```
 
-It doesn't ask you to fill out a brief. It just starts:
+It starts immediately:
 
 ```
-Overall: small revisions suggested
-(Guessing from the image: Double 11 app hero banner — goal is to get users to tap when they see the price)
+Overall suggestion: Small revisions suggested
+Image type: Poster
+Basis: Visual inference only
+My read: Double 11 app hero banner — goal is to get users to tap when they see the price
 
 3 spots worth looking at first:
 
-1. Center, "Final price ¥99"
+1. Center, "Final price ¥99" · Fix first
    Issue: Price size vs. surrounding text — not enough contrast for mobile small-screen scanning
+   Why: Text legibility is the poster's most basic function. Once that fails, nothing else matters.
    How to fix: Scale up ¥99 by 1.5×, add breathing room, reduce surrounding decoration
 
-2. Bottom strip, "Buy Now" button
+2. Bottom strip, "Buy Now" button · Worth improving
    Issue: Button color blends into the background — doesn't read as tappable at a glance
+   Why: The CTA is the final action the entire image needs users to complete — it needs the strongest visual weight
    How to fix: Darken the fill or add a white outline so it stands out
 
-3. Top right, countdown — lower priority, can wait
+3. Top right, countdown · Lower priority, can wait
    Heavier digit weight would make the urgency land more
 
+One line for the designer: Prioritize making "¥99" the visual anchor, then boost CTA contrast
 Confirming: I read "Final price ¥99 / Buy Now" — is that right?
-Want me to write a revision note for issue 1 you can send directly to the designer?
+Next (optional): Want me to write a revision note for issue 1 you can send directly to the designer?
+If anything's off in my read, just tell me — I'll log it and adjust future reviews.
 ```
-
-No scores. No "design language consistency." Just: something's off here, change it like this.
 
 The more context you share, the more precise the advice — but sending just the image works fine too.
 
-<!-- 💡 Tip: add a real screenshot with nine-grid annotations here — more convincing than any description
-     Example: ![Review output screenshot](./assets/demo-problem-banner.png) -->
+## How it decides what to look for
+
+![Start with a point of view, then make the correction specific](./assets/cover-02-correction-paper.png)
+
+One underlying principle drives every judgment it makes:
+
+> **Every visual element is either directing attention or getting out of the way of what's directing attention. There's no middle ground.**
+
+From there, it identifies what kind of image you've sent and switches to the matching standard:
+
+**If it's a poster with text** (campaign banners, brand posters, social covers…)
+
+Four rules that can't be broken: Is the composition clearly prioritized? Can the key text be read in 3 seconds at actual viewing size? Does light/dark contrast separate the layers? Does the visual path flow from the core message to the CTA? **Any one of these failing automatically becomes "fix this first" — it won't get buried under other issues.**
+
+Depth and style consistency are bonuses — great to have, not required.
+
+**If it's a text-free asset** (background images, decorative elements, product shots, asset packs…)
+
+One standard only: **usability**. Backgrounds must yield to the content layered on top. Decorative elements can't upstage the main subject. Product shots need an unambiguous focal point. An asset that doesn't know how to play a supporting role isn't a good asset, no matter how nice it looks on its own.
 
 ---
 
@@ -89,38 +112,44 @@ cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit      # project-level
 
 ## How to use it
 
-**Just the image, nothing else** → works fine, it'll infer
+**Just the image, nothing else**
+
+It'll ask you one question before starting:
+
+> "What is this image mainly for? Campaign banner, social cover, brand poster — just a rough direction helps."
+
+Answer that and it gives a full review calibrated to your use case. If you don't want to answer, say "just take a look" and it'll infer from the image and proceed.
+
+**More context = more precise advice** (one sentence is enough)
 
 ```
 [image attached]
-Take a look
-```
-
-**More context = more precise advice** (optional but helpful)
-
-```
-[image attached]
-This is the hero image for our 618 sale landing page
-Need to highlight "Save ¥200", the button has to be tappable, keep the brand logo
+618 sale landing page hero — highlight "Save ¥200", button needs to be tappable, keep the logo
 ```
 
 **Comparing two options**
 
 ```
 [image A, image B attached]
-Which one works better for a Xiaohongshu post?
+Which works better for a Xiaohongshu post?
 ```
 
-**After you've made changes**
+**After making changes**
 
 ```
 [revised image]
 Fixed issue 1 — take another look?
 ```
 
+**Sending an asset, not a poster**
+
+Just send it — the Skill identifies whether it's a background, decorative element, or product shot and switches to the appropriate standard automatically (usability-first, not information-hierarchy-first).
+
 ---
 
 ## It gets better the more you use it
+
+![From vague review to opinionated correction](./assets/cover-03-latent-deterministic.png)
 
 No forms to fill. Just say whatever comes to mind after a review:
 
@@ -130,14 +159,16 @@ No forms to fill. Just say whatever comes to mind after a review:
 
 Once enough signals build up, it automatically adjusts its rules so future reviews fit your actual situation better.
 
+**You can see what's been accumulated at any time.** The file `references/rules-summary.md` in your install directory keeps a plain-language record of which issues have been confirmed as ignorable, what to watch more closely, and your format preferences. You can open it whenever you want — and you can also edit it directly. Anything you write in there takes effect the next time the AI starts a review.
+
 ---
 
 ## Where it works best
 
 - Campaign banners, posters, landing page hero images
 - Product images, Xiaohongshu covers, brand visuals
-- AIGC-generated assets you want to sanity-check before publishing
-- Any situation where you've got a finished image and want a second opinion
+- Background textures, decorative assets, AIGC-generated content before publishing
+- Any situation where you've got a finished image and want a second opinion before it goes out
 
 Short version: **image is done, don't know where to start fixing it** — that's this tool's moment.
 
@@ -154,6 +185,8 @@ Short version: **image is done, don't know where to start fixing it** — that's
 ## Adapting it to your business
 
 The core judgment rules live in `references/skill-review-criteria.md`. Replace the material types, placement contexts, and risk boundaries there — the output structure (at most 3 issues, each with location + why it matters + how to fix) stays the same.
+
+You can also edit `references/rules-summary.md` directly — write in your team's confirmed rules and the AI will apply them from the next session onward.
 
 ---
 

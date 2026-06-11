@@ -7,7 +7,10 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const requiredFiles = [
   "SKILL.md",
-  "assets/demo-problem-banner.png",
+  "assets/cover-01-opinion-dark.png",
+  "assets/cover-02-correction-paper.png",
+  "assets/cover-03-latent-deterministic.png",
+  "references/rules-summary.md",
   "references/skill-review-flow.md",
   "references/skill-review-criteria.md",
   "references/skill-review-redlines.md",
