@@ -1,225 +1,159 @@
-# AI 视觉改稿建议助手
+# 图发出去之前，让 AI 帮你挑一遍毛病
 
 **AI Visual Improvement Assistant**
 
 [![License](https://img.shields.io/github/license/HDC327/ai-visual-audit-skill?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/ai-visual-audit-skill?style=flat-square)](https://www.npmjs.com/package/ai-visual-audit-skill) [![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master) [![Cursor](https://img.shields.io/badge/Cursor-Supported-000000?style=flat-square)](https://github.com/HDC327/ai-visual-audit-skill/blob/master)
 
-> 把图片发给 AI，马上知道**先改哪里、为什么、怎么改**——不打分、不裁判，只帮你找最值得先动的 3 个地方。
+把图发给它，它告诉你：**先改哪里、为什么、怎么改**。  
+不打分，不下结论，不说"整体不错"——直接给你 3 个值得先动的地方。
 
 [English README](https://github.com/HDC327/ai-visual-audit-skill/blob/master/README-en.md)
 
 ---
 
-## 你会得到什么
+## 用起来是这个感觉
 
-把这张大促 Banner 示例发给安装了本 Skill 的 Agent：
-
-![带有层级和转化问题的大促 Banner 示例](assets/demo-problem-banner.png)
-
-你会立刻得到：
+你把大促 Banner 发给装了这个 Skill 的 AI，随口说一句：
 
 ```
-整体建议：建议先改完再用
-判断依据：仅基于画面推测
-我先按画面理解：这张图像双11 App 首焦 Banner，目标应该是突出商品、到手价和立即购买。
-
-我最建议你先看这 3 处：
-1. 位置：第 1 张图，正下，「立即抢购」按钮
-   优先级：必须先改
-   问题：按钮与红金背景太接近，文字也偏暗，第一眼不像可点击的主行动按钮。
-   为什么：首焦 Banner 最终要把用户带到购买动作，CTA 不清楚会直接影响点击转化。
-   怎么改：把按钮改成更高对比的实色或白底红字，减少按钮周围金光干扰，并让按钮与价格区拉开层级。
-
-2. 位置：第 1 张图，正下偏上，「到手价 ¥99」
-   优先级：必须先改
-   问题：价格被产品台座、装饰灯点和大标题压住，没有成为画面第一利益点。
-   为什么：双11首焦需要用户先看到优惠或到手价；现在第一视觉被“狂欢价”和背景装饰拿走了。
-   怎么改：放大「¥99」，弱化“到手价”标签和周边灯点，把价格区提升到商品右侧或按钮上方的主视觉位置。
-
-3. 位置：第 1 张图，四周边缘，金币、彩带、礼盒和光效
-   优先级：建议优化
-   问题：装饰元素过密，右侧和底部尤其拥挤，抢走商品和行动按钮的注意力。
-   为什么：大促氛围已经足够，继续堆元素会降低信息识别效率，也让画面显得廉价。
-   怎么改：保留少量金币和彩带作为氛围，清理底部前景和右侧高亮装饰，让中间商品、价格、按钮形成清晰路径。
-
-可以快速略过：商品主体清晰度、双11节点氛围、主标题识别度
-给设计师的一句话：先把「¥99」和「立即抢购」做成最清晰的转化路径，再把四周装饰减半，避免氛围压过利益点。
-需要你再确认：我读到的是「双11 狂欢价 / 到手价 ¥99 / 立即抢购 / 00:12:33 / MOCK」，请确认是否正确。
-下一步（可选）：要我针对第 1 处生成一段可直接粘贴的改图 prompt 吗？
-反馈邀请：如果有哪里判断不准，直接告诉我，我会记下来把之后的判断调得更准。
+帮我看看这张图
+[附上图片]
 ```
 
----
+它不会反问你"请描述一下图片的用途和目标受众"，直接开始看：
 
-## 为什么是「建议」而不是「裁判」
+```
+整体：建议小改
+（我先按画面猜：大促 App 首焦 Banner，目标是让人看见价格就想点）
 
-| 裁判式 AI 审核 | 建议式（本 Skill） |
-|---|---|
-| 「这张图 72 分，不合格。」 | 「建议先改：利益点被装饰压住。」 |
-| 像在给作品判分 | 像在帮你找优先修改点 |
-| 读完仍不知道先改哪里 | 直接看被指出的位置 |
-| AI 容易显得过度武断 | AI 只提建议，最终决定由人做 |
+先看这 3 个地方：
+
+1. 正中，「到手价 ¥99」
+   问题：价格字号和旁边文字差距太小，手机小屏第一眼找不到重点
+   怎么改：「¥99」放大 1.5 倍，四周多留白，减少旁边装饰的干扰
+
+2. 底部通栏，「立即抢购」按钮
+   问题：按钮颜色和背景太接近，扫一眼不像是个能点的按钮
+   怎么改：加深按钮填充色，或加白色描边让它从背景跳出来
+
+3. 右上，倒计时 · 可以先放
+   数字如果再粗一点，紧迫感会更强
+
+确认一下：我看到的是「到手价 ¥99 / 立即抢购」，这个对吗？
+要我帮第 1 处写一段可以直接发给设计师的改图说明吗？
+```
+
+没有评分。没有"整体设计语言统一性"。就是：这里有问题，这样改。
+
+你把背景说得越清楚，建议就越准——但什么都不说，只发图片，它也能看。
+
+<!-- 💡 建议：在这里加一张带九宫格标注的真实审核截图，比任何文字描述都有说服力
+     示例：![审核输出截图](./assets/demo-output.png) -->
 
 ---
 
 ## 安装
 
-本 Skill 是一个标准的 [Agent Skill](https://code.claude.com/docs/en/skills)（`SKILL.md` + `references/`），支持 Claude Code、Codex、Cursor 等工具。
+本 Skill 支持 Claude Code、Codex、Cursor 等工具，是标准的 [Agent Skill](https://code.claude.com/docs/en/skills) 格式（`SKILL.md` + `references/`）。
 
 ### 方式一：npm（推荐）
 
-npm 包页：[ai-visual-audit-skill](https://www.npmjs.com/package/ai-visual-audit-skill)
-
 ```bash
-# 安装到当前用户，对所有项目生效（~/.claude/skills）
+# 安装到当前用户，所有项目都能用（~/.claude/skills）
 npx ai-visual-audit-skill
 
-# 只安装到当前项目（./.claude/skills，适合随仓库提交）
+# 只装在当前项目里（适合随仓库一起提交）
 npx ai-visual-audit-skill --project
 
-# 安装到 Codex（~/.codex/skills）
+# 安装到 Codex
 npx ai-visual-audit-skill --codex
 
-# 安装到任意目录（如 Cursor、自定义 Agent）
+# 安装到任意目录（Cursor、自定义 Agent 等）
 npx ai-visual-audit-skill --dir ~/.cursor/skills
 ```
 
-安装器会把 `SKILL.md` 和 `references/` 复制到目标位置下的 `ai-visual-audit/` 目录。重复执行可直接覆盖更新；`--force` 可跳过覆盖提示。
+装完之后在 AI 里重启一次会话就好。重复执行会直接覆盖更新；`--force` 跳过覆盖提示。
 
-> 安装后如果 Agent 没有立刻识别到，重启一次会话即可。
-
-查看全部参数：`npx ai-visual-audit-skill --help`
+> Windows 用户建议用 npx 安装，或在 Git Bash 里跑手动安装命令。
 
 ### 方式二：手动安装
 
 ```bash
 git clone https://github.com/HDC327/ai-visual-audit-skill.git
-
-# 个人级（所有项目可用）
-cp -r ai-visual-audit-skill ~/.claude/skills/ai-visual-audit
-
-# 或项目级（仅当前仓库）
-cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit
-```
-
-只需保证目标目录名为 `ai-visual-audit`（与 `SKILL.md` 中的 `name` 一致），且包含 `SKILL.md` 和 `references/`。
-
-> **Windows 用户**：建议优先用 `npx ai-visual-audit-skill`；若手动复制，可用资源管理器拖拽文件夹，或在 Git Bash 中执行上述 `cp` 命令。
-
----
-
-## 30 秒上手
-
-把图片和几条最简单的上下文发给已安装本 Skill 的 AI Agent：
-
-```
-请帮我看这张图哪里需要优化。
-用途：双11 App 首焦 Banner
-目标：突出到手价和立即购买
-补充要求：必须保留品牌 logo 和「立即抢购」
-图片：见附件。
-```
-
-**只给图片也完全可以**。Agent 不会卡住等你回答——它会先根据画面反推可能用途，直接给出完整建议，并在结尾用一句话邀请你补充真实用途，方便下一轮给更准的建议。
-
----
-
-## 语言说明
-
-`SKILL.md` 不必须使用英文。这个项目的正文是中文执行手册，方便中文业务和视觉审核场景直接使用；frontmatter 里的 `name` 保持英文短横线格式，`description` 保留中英触发关键词，是为了让不同 Agent 更容易识别什么时候该启用这个 Skill。
-
----
-
-## 核心能力
-
-- **最多 3 个重点问题**：强制做优先级排序，避免一口气列出十几条让人无从下手
-- **位置说得准**：统一用九宫格方位（左上 / 正中 / 底部通栏…）+ 那里是什么，一眼定位
-- **不卡追问**：上下文能给就给，不给时 Agent 直接按画面推测给建议，只在结尾加一句可选追问
-- **多图也能用**：多张图时先给每张一句话结论，再给跨图的全局重点；要对比时直接告诉你哪张更能达成目标
-- **可直接改稿**：每条建议都包含位置、为什么重要、怎么改；还可让 Agent 生成可直接粘贴的改图 prompt
-- **图片质量自检**：图片偏小或模糊时主动告知置信度受限，建议传更清晰的版本
-- **关键文字复读**：价格、日期、品牌名等读取后原文念出来请你确认，而不是假装已经核对
-
----
-
-## 自进化：反馈如何变成更准的建议
-
-用户不需要填写专业表格，自然说就行：
-
-```
-你：「这条不对，logo 是客户要求必须放这里的」
-你：「你漏看了底部的免责小字」
-你：「不要给分，只要建议就好」
-你：「这条判断准确」
-```
-
-Skill 会把这些回复静默整理为优化信号，写入本地 `references/feedback/feedback-log.md`，并在信号积累到阈值后自动调整判断规则：
-
-```mermaid
-graph LR
-    A[你发图 + 上下文] --> B[Agent 给出 3 条建议]
-    B --> C[你自然回复反馈]
-    C --> D[写入 feedback/feedback-log.md]
-    D --> E{达到阈值?}
-    E -- 是 --> F[自动更新 skill-review-criteria.md]
-    E -- 否 --> G[继续积累]
-    F --> H[清空已消费条目\n保留简短摘要]
-    H --> B
-```
-
-已消费的反馈会从日志中清空，只在 `references/feedback/change-log.md` 保留一行摘要，避免日志无限增长。
-
-<!-- 💡 建议：在这里加一张自进化流程的配图或 before/after 对比截图
-     展示"反馈前"和"反馈后"输出质量的变化，会让这个机制更有说服力 -->
-
----
-
-## 适合 / 不适合
-
-**适合**：营销图、海报、Banner、落地页、商品主图、小红书封面、品牌图、新品发布图、AIGC 素材观察。
-
-**不适合**：金融 / 医疗 / 法律等强合规终审、内容安全自动封禁、需要法律责任链路的自动裁决。
-
----
-
-## 文件结构
-
-```
-ai-visual-audit-skill/
-├── SKILL.md                          # Skill 入口：触发条件、核心规则、默认输出格式
-├── package.json                      # npm 安装包配置
-├── assets/
-│   └── demo-problem-banner.png       # README 示例图
-├── bin/
-│   └── cli.js                        # npx 安装器
-├── README.md
-├── README-en.md
-└── references/
-    ├── skill-review-flow.md          # 执行协议与输出格式
-    ├── skill-review-criteria.md      # 物料类型、审核维度、风险等级（始终读取）
-    ├── skill-review-redlines.md      # 合规与版权红线（仅在疑似风险时读取）
-    ├── skill-review-optimizer.md     # 反馈分类与自进化规则
-    ├── feedback/
-    │   ├── feedback-log.md           # 待消费的反馈信号
-    │   └── change-log.md             # 已消费反馈的简短摘要
-    ├── content-quality-standards/    # 各物料类型的质量细则
-    ├── content-safety-standards/     # 内容安全判断标准
-    └── visual-design-audit-dimensions/ # 视觉设计审核维度详解
+cp -r ai-visual-audit-skill ~/.claude/skills/ai-visual-audit    # 个人级
+# 或
+cp -r ai-visual-audit-skill .claude/skills/ai-visual-audit      # 项目级
 ```
 
 ---
 
-## 如何迁移到你的业务
+## 不同情况怎么用
 
-真正的领域知识在 `references/skill-review-criteria.md`。你可以替换其中的物料类型、投放场景、节点和风险边界；保留「最多 3 个重点问题」「位置 + 为什么 + 怎么改」这套输出方式不变。
+**只有图片，什么都不说** → 直接发，它会猜
+
+```
+[附上图片]
+帮我看看
+```
+
+**想要更准的建议，多说一点**（背景说得越具体越好，但不是必须）
+
+```
+[附上图片]
+这是 618 活动的落地页顶图，要突出「立减 200」
+按钮得能点击进入，品牌 logo 必须留着
+```
+
+**两张方案不知道选哪张**
+
+```
+[附上图 A、图 B]
+这两张用来发小红书，哪张留住人的效果更好？
+```
+
+**改完了想再过一遍**
+
+```
+[改过的图]
+第 1 处改了，你再帮我看看
+```
 
 ---
 
-## 已知局限
+## 用几次之后，它会越来越准
 
-- **只给图片时不是完整判断**：Agent 会直接按画面推测用途给建议（并在结尾邀请你补充），但无法确认真实 brief、价格、文案、活动规则和品牌规范。
-- **创意维度最弱**：Agent 通常不能访问近期同类历史物料，因此「是否雷同」只能作为低到中置信参考。
-- **文字与价格必须人工复核**：图像模型可能看错小字、价格、日期，涉及事实准确性的判断需要人确认。
+你不需要填表打分。就算随口说一句，它都会记下来：
+
+- **「这条不对，那个位置是客户要求必须放的」** → 记住，之后不会再挑这类问题
+- **「你漏看了底部的免责小字」** → 记住，下次更仔细看那个区域
+- **「这条说到点了」** → 记住，知道这类判断是对的
+
+积累够了，它会自动把判断规则调一遍，让之后的建议更贴你们的实际情况。
+
+---
+
+## 什么情况下最好用
+
+- 大促 Banner、海报、落地页顶图
+- 商品主图、小红书封面、品牌宣传图
+- AIGC 生成的素材发出去之前想过一遍
+- 有图但没有设计师帮你把关
+
+简单说：**图做完了，想过一遍，不知道先改哪里**——都可以用。
+
+---
+
+## 它做不到的事
+
+- **价格、日期、活动规则要你自己最后确认**——AI 偶尔会看错小字，涉及这些它会把读到的内容说出来请你核对，但你才是最终那一关
+- **金融、医疗、法律类图片的合规审核**——这是法律问题，不是视觉问题，管不了
+- **判断"和之前的图是不是雷同"**——它没有你们历史素材库，这条建议只能是参考
+
+---
+
+## 想按自己业务定制
+
+核心的判断规则在 `references/skill-review-criteria.md` 里，你可以直接替换物料类型、投放场景、风险边界——保留「最多 3 个重点问题 + 位置 + 为什么 + 怎么改」这套输出方式不变。
 
 ---
 
